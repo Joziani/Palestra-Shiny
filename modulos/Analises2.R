@@ -87,7 +87,7 @@ analise2_server <- function(input, output, session) {
     req(input$cilindros)
     
     if (input$cambio == 'Todos') {
-      tabela_plot1 <- Dados2() %>%
+      tabela_plot1 <- df %>%
         group_by(gear) %>% 
         summarise(Media = mean(mpg)) %>% 
         ungroup()
@@ -133,8 +133,8 @@ analise2_server <- function(input, output, session) {
                           y = Media)) %>% 
       hc_xAxis(title = list(text = 'Número de marchas')) %>% 
       hc_yAxis(title = list(text = 'Média da Potência')) %>% 
-      hc_tooltip(pointFormat = "Número de marchas: <b>R$ {point.x}</b><br>
-                 Média da Potência: <b>R$ {point.y}</b>") %>%
+      hc_tooltip(pointFormat = "Número de marchas: <b> {point.x}</b><br>
+                 Média da Potência: <b> {point.y}</b>") %>%
       hc_plotOptions(column = list(dataLabels = list(enabled = TRUE))) %>% 
       hc_legend(NULL)
     
@@ -144,7 +144,7 @@ analise2_server <- function(input, output, session) {
   
   output$cilindros_plotly <- renderPlotly({
     
-    dados2 <- tabela_plot()[['tabela_plot2']] %>% 
+    dados2 <- tabela_plot1 %>% 
       mutate(Media = round(Media, 2),
              gear = as.factor(gear))
     
@@ -157,7 +157,8 @@ analise2_server <- function(input, output, session) {
                           xaxis = list(title = 'Número de marchas'),
                           yaxis = list(title = 'Milhas/galão'),
                           margin = list(b = 100),
-                          barmode = 'group')
+                          barmode = 'group'
+                          )
     
     fig
     

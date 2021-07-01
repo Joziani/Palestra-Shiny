@@ -6,7 +6,6 @@ rm(list=ls())
 options(OutDec = ',')
 
 library(tidyverse)
-library(openxlsx)
 library(readxl)
 library(shiny)
 library(shinydashboard)

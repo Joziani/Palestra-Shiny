@@ -290,11 +290,11 @@ modelo_server <- function(input, output, session) {
                                   'Variáveis com combinações lineares a serem retiradas - Teste'),
                          Valores = c(var_zero_treino,
                                      var_zero_teste,
-                                     length(comb_lineares_treino$remove),
-                                     length(comb_lineares_teste$remove),
-                                     paste0(unlist(comb_lineares_treino$linearCombos), 
+                                     length(comb_lineares_treino$linearCombos),
+                                     length(comb_lineares_teste$linearCombos),
+                                     paste0(unlist(comb_lineares_treino$remove), 
                                             collapse = ','),
-                                     paste0(unlist(comb_lineares_teste$linearCombos), 
+                                     paste0(unlist(comb_lineares_teste$remove), 
                                             collapse = ',')))
     
     tabela %>% 

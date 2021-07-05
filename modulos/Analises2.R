@@ -144,7 +144,7 @@ analise2_server <- function(input, output, session) {
   
   output$cilindros_plotly <- renderPlotly({
     
-    dados2 <- tabela_plot1 %>% 
+    dados2 <- tabela_plot()[['tabela_plot2']] %>% 
       mutate(Media = round(Media, 2),
              gear = as.factor(gear))
     
